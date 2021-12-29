@@ -2,6 +2,7 @@ import time
 
 import pyautogui
 import os
+import requests
 
 from selenium import webdriver
 from selenium.webdriver import ActionChains
@@ -15,6 +16,7 @@ url = 'https://www.google.com/recaptcha/api2/demo'
 # Windows - chromedriver.exe v.96.4664
 # Linux - chromedriver v.96.4664
 path_to_driver = os.path.join(os.getcwd(), 'driver', 'chromedriver.exe')
+
 
 def main():
     chrome_options = Options()
@@ -42,11 +44,15 @@ def main():
     # actionChains = ActionChains(browser)
     # actionChains.context_click().perform()
 
-    pyautogui.hotkey('ctrl', 's')
-    time.sleep(2)
-    pyautogui.press('Enter')
-    time.sleep(2)
-    browser.quit()
+    img_data = requests.get(image_path).content
+    with open(os.path.join(os.getcwd(), 'photos', 'original', 'payload.jpg'), 'wb') as handler:
+        handler.write(img_data)
+
+    # pyautogui.hotkey('ctrl', 's')
+    # time.sleep(2)
+    # pyautogui.press('Enter')
+    # time.sleep(2)
+    # browser.quit()
 
 
 if __name__ == '__main__':

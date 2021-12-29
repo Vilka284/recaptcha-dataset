@@ -2,7 +2,7 @@ import cv2
 import os
 
 
-def upscaling(image, x=300, y=300):
+def upscaling(image, x=360, y=360):
     resized_image = cv2.resize(image, (x, y), interpolation=cv2.INTER_AREA)
     return resized_image
 
@@ -12,7 +12,7 @@ def show_image(name, image):
     cv2.waitKey(0)
 
 
-img = cv2.imread(os.path.join(os.getcwd(), 'photos', 'original', 'payload.png'))
+img = cv2.imread(os.path.join(os.getcwd(), 'photos', 'original', 'payload.jpg'))
 
 height, width, channels = img.shape
 print(height, 'x', width)
@@ -20,9 +20,11 @@ print(height, 'x', width)
 cv2.imshow('image', img)
 cv2.waitKey(100)
 
+img = upscaling(img)
+
 images = []
 
-step = 100
+step = 120
 height = 0
 width = 0
 for i in range(3):
