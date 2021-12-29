@@ -12,13 +12,13 @@ def show_image(name, image):
     cv2.waitKey(0)
 
 
-img = cv2.imread(os.join(os.getcwd(), 'photos', 'original', 'payload.jpg'))
+img = cv2.imread(os.path.join(os.getcwd(), 'photos', 'original', 'payload.png'))
 
 height, width, channels = img.shape
 print(height, 'x', width)
 
 cv2.imshow('image', img)
-cv2.waitKey(0)
+cv2.waitKey(100)
 
 images = []
 
@@ -34,7 +34,7 @@ for i in range(3):
 
 for i in range(9):
     cv2.imshow('img' + str(i), images[i])
-    cv2.waitKey(0)
-    cv2.imwrite(os.join(os.getcwd(), 'photos', 'cropped', f'img{i}.jpg'), images[i])
+    cv2.waitKey(100)
+    cv2.imwrite(os.path.join(os.getcwd(), 'photos', 'cropped', f'img{i}.jpg'), images[i])
 
 cv2.destroyAllWindows()
