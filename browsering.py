@@ -103,6 +103,13 @@ class Captcha:
         except Exception as ex:
             print(ex)
 
+    def click_squares(self, number):
+        list_of_squares = self.browser.find_elements_by_css_selector('.rc-image-tile-wrapper')
+        try:
+            list_of_squares[number].click
+        except Exception as ex:
+            print(ex)
+
 
 def main():
     captcha = Captcha()
