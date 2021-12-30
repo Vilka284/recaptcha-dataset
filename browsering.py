@@ -16,6 +16,7 @@ from download_image import path_to_driver
 
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+list_of_classes = ['bicycle', 'bus', 'car', 'hydrant', 'palm', 'traffic light']
 url = 'https://www.google.com/recaptcha/api2/demo'
 
 
@@ -68,6 +69,11 @@ class Captcha:
                 self.refreshing()
                 time.sleep(2)
                 self.table_info()
+            if not self.check_existing(class_name.text):
+                print('Not trained class')
+                self.refreshing()
+                time.sleep(2)
+                self.table_info()
             return class_name.text
         except Exception as ex:
             print(ex)
@@ -109,6 +115,12 @@ class Captcha:
             list_of_squares[number].click
         except Exception as ex:
             print(ex)
+
+    def check_existing(self, class_name):
+        if class_name in list_of_classes:
+            return True
+        else:
+            return False
 
 
 def main():
